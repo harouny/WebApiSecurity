@@ -3,7 +3,6 @@ using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(WebApiSecurity.Startup))]
-
 namespace WebApiSecurity
 {
     public class Startup
