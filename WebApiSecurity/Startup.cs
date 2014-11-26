@@ -10,7 +10,6 @@ namespace WebApiSecurity
     {
         public void Configuration(IAppBuilder app)
         {
-            System.Diagnostics.Debugger.Launch();
             var config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
