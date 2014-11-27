@@ -20,7 +20,9 @@ namespace WebApiSecurity
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
             {
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(5)
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(5),
+                Provider = new OAuthAuthorizationServerProvider(),
+                AllowInsecureHttp = true
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
             app.UseWebApi(config);
