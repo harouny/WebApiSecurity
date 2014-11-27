@@ -3,7 +3,6 @@ using System.Web.Http;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using WebApiSecurity.AuthorizationServer;
 
 [assembly: OwinStartup(typeof(WebApiSecurity.Startup))]
 namespace WebApiSecurity

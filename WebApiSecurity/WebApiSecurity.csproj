@@ -98,9 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AnimalsController.cs" />
-    <Compile Include="AuthorizationServer\OAuthServerProvider.cs" />
+    <Compile Include="App_Start\OAuthServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="App_Start\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
