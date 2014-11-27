@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Http;
 
 namespace WebApiSecurity.Controllers
@@ -18,40 +19,40 @@ namespace WebApiSecurity.Controllers
         
         public IHttpActionResult Get()
         {
-            LogUser();
+            LogCurrentUser();
             return Ok(_animals);
         }
 
         public IHttpActionResult Put(string animal)
         {
-            LogUser();
+            LogCurrentUser();
             _animals.Add(animal);
             return Ok(animal);
         }
 
         public IHttpActionResult Delete(string animal)
         {
-            LogUser();
+            LogCurrentUser();
             _animals.Remove(animal);
             return Ok(animal);
         }
 
-        private void LogUser()
+        private void LogCurrentUser()
         {
-            var msg = "--------------" + Environment.NewLine;
-
+            var message = new StringBuilder();
+            message.AppendLine("--------------");
             if (User != null && User.Identity != null)
             {
-                msg += "User: " + User.Identity.Name + Environment.NewLine;
-                msg += "AuthType: " + User.Identity.AuthenticationType + Environment.NewLine;
+                message.AppendLine("User: " + User.Identity.Name);
+                message.AppendLine("AuthType: " + User.Identity.AuthenticationType);
             }
             else
             {
-                msg += "Not Authenticated" + Environment.NewLine;
+               message.AppendLine("Not Authenticated");
             }
-            msg += "--------------" + Environment.NewLine;
-            System.Diagnostics.Debugger.Log(0, GetType().Name, msg);
-            Console.WriteLine(msg);
+           message.AppendLine("--------------");
+            System.Diagnostics.Debugger.Log(0, GetType().Name, message.ToString());
+            Console.WriteLine(message.ToString());
         }
 
     }
