@@ -6,6 +6,7 @@ using System.Web.Http;
 
 namespace WebApiSecurity.Controllers
 {
+    [RoutePrefix("api")]
     public class AnimalsController : ApiController
     {
         private static List<string> _animals;
@@ -17,20 +18,23 @@ namespace WebApiSecurity.Controllers
             }
         }
         
+        [Route("animals")]
         public IHttpActionResult Get()
         {
             LogCurrentUser();
             return Ok(_animals);
         }
 
-        public IHttpActionResult Put(string animal)
+        [Route("animals")]
+        public IHttpActionResult Put([FromBody]string animal)
         {
             LogCurrentUser();
             _animals.Add(animal);
             return Ok(animal);
         }
 
-        public IHttpActionResult Delete(string animal)
+        [Route("animals")]
+        public IHttpActionResult Delete([FromBody]string animal)
         {
             LogCurrentUser();
             _animals.Remove(animal);
