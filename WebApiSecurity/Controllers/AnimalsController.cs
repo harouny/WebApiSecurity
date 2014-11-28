@@ -17,8 +17,8 @@ namespace WebApiSecurity.Controllers
                 _animals =  (new[] { "cat", "dog", "mouse" }).ToList();
             }
         }
-        
-        [Route("animals")]
+
+        [Route("animals", Name = "animals")]
         public IHttpActionResult Get()
         {
             LogCurrentUser();
@@ -26,19 +26,28 @@ namespace WebApiSecurity.Controllers
         }
 
         [Route("animals")]
+        [Authorize]
         public IHttpActionResult Put([FromBody]string animal)
         {
             LogCurrentUser();
             _animals.Add(animal);
-            return Ok(animal);
+            return Created(Url.Link("animal", new { animal }), animal);
         }
 
         [Route("animals")]
+        [Authorize]
         public IHttpActionResult Delete([FromBody]string animal)
         {
             LogCurrentUser();
             _animals.Remove(animal);
             return Ok(animal);
+        }
+
+        [Route("animals/{animal}", Name = "animal")]
+        public IHttpActionResult Get(string animal)
+        {
+            LogCurrentUser();
+            return Ok(_animals.ToList().First(obj => obj == animal));
         }
 
         private void LogCurrentUser()
