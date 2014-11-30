@@ -9,6 +9,7 @@ namespace WebApiSecurity
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             return Task.Run(() => 
+                //password flow doesn't provide a client id so we validate all clients
                 context.Validated()
             );
         }
@@ -17,6 +18,7 @@ namespace WebApiSecurity
         {
             return Task.Run(() =>
             {
+                //here is where we check for user name and password from persisted storage 
                 if (context.UserName != context.Password)
                 {
                     context.Rejected();
@@ -24,8 +26,9 @@ namespace WebApiSecurity
                 }
                 // create identity
                 var id = new ClaimsIdentity("Embedded");
-                id.AddClaim(new Claim("sub", context.UserName));
-                id.AddClaim(new Claim("role", "user"));
+                //add any claims required (claims is embedded and can be extracted from the token)
+                id.AddClaim(new Claim("sub", context.UserName)); //subject
+                id.AddClaim(new Claim("role", "user")); //role
                 context.Validated(id);
             });
         }
