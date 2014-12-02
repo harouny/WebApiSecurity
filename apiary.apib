@@ -19,7 +19,13 @@ Notes related resources of the **Animals API**
 ### Add a new animal [PUT]
 + Request (application/json)
 
-        "tiger"
+    + Header
+
+            Authorization: bearer eHZ6MWV2R...o4OERSZHlPZw==
+
+    + Body
+
+            "tiger"
 
 + Response 201
 
@@ -37,4 +43,9 @@ A single animal object with all its details
             "cat"
 
 ### Remove the animal [DELETE]
++ Request
+
+    + Header
+
+            Authorization: bearer eHZ6MWV2R...o4OERSZHlPZw==
 + Response 204
