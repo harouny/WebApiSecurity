@@ -1,46 +1,40 @@
 FORMAT: 1A
 
-# Notes API
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# Animals API
+Animals API is a service to store animals.
 
 # Group Notes
-Notes related resources of the **Notes API**
+Notes related resources of the **Animals API**
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Animals [/animals]
+### List all animals [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+        [
+            "cat", 
+            "dog", 
+            "lion"
+        ]
 
-### Create a Note [POST]
+### Add a new animal [PUT]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        "tiger"
 
-+ Response 201 (application/json)
++ Response 201
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
+## Animals [/animals/{animal}]
+A single animal object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + animal (required, string, `tiger`) ... String `animal` of the animal you want to retrieve.
 
-### Retrieve a Note [GET]
+### Retrieve an animal [GET]
 + Response 200 (application/json)
-
-    + Header
-
-            X-My-Header: The Value
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            "cat"
 
-### Remove a Note [DELETE]
+### Remove the animal [DELETE]
 + Response 204
