@@ -1,0 +1,51 @@
+FORMAT: 1A
+
+# Animals API
+Animals API is a service to store animals.
+
+# Group Animals
+Contracts related resources of the **Animals API**
+
+## Animals [/animals]
+### List all animals [GET]
++ Response 200 (application/json)
+
+        [
+            "cat", 
+            "dog", 
+            "lion"
+        ]
+
+### Add a new animal [PUT]
++ Request (application/json)
+
+    + Header
+
+            Authorization: bearer eHZ6MWV2R...o4OERSZHlPZw==
+
+    + Body
+
+            "tiger"
+
++ Response 201
+
+## Animal [/animals/{animal}]
+A single animal object with all its details
+
++ Parameters
+    + animal (required, string, `tiger`) ... String `animal` of the animal you want to retrieve.
+
+### Retrieve an animal [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            "cat"
+
+### Remove the animal [DELETE]
++ Request
+
+    + Header
+
+            Authorization: bearer eHZ6MWV2R...o4OERSZHlPZw==
++ Response 204
