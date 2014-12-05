@@ -5,10 +5,11 @@ namespace WebApiSecurity.Tests
 {
     public static class LogUtility
     {
-        public static void LogToConsole(this HttpResponseMessage response)
+        public static HttpResponseMessage LogToConsole(this HttpResponseMessage response)
         {
             Console.WriteLine(response);
             Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            return response;
         }
     }
 }

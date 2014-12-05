@@ -18,8 +18,9 @@ namespace WebApiSecurity
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/token"), //endpoint where clients can request for token
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(5), //time to expire the token
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1), //time to expire the token
                 Provider = new OAuthServerProvider(), //a custom provider to handle authentication
+                RefreshTokenProvider = new OAuthRefreshTokenProvider(), //configure server to enable refresh tokens
                 AllowInsecureHttp = true //enable token to be requested using http (should be removed in production)
             });
             //token consumption
