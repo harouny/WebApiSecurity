@@ -82,7 +82,7 @@ namespace WebApiSecurity.Tests
                     Assert.IsTrue(token["token_type"] != null && token["token_type"].Value<string>() == "bearer", "token_type is missing or invalid");
                     Assert.IsTrue(token["expires_in"] != null && token["expires_in"].Value<int>() > 0, "expires_in is missing");
                     Assert.IsTrue(token["refresh_token"] != null && token["refresh_token"].Value<string>().Length > 20, "refresh_token is missing");
-                    Assert.AreNotEqual(accessToken, token["refresh_token"].Value<string>());
+                    Assert.AreNotEqual(accessToken, token["access_token"].Value<string>());
                 }
             }
         }
